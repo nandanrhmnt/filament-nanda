@@ -13,6 +13,6 @@ class Kesehatan extends Model
 
     public function mahasiswa()
     {
-        return $this->belongsTo(Mahasiswa::class, 'npm');
+        return $this->belongsTo(Mahasiswa::class, 'id');
     }
 }

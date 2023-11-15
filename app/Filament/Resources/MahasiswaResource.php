@@ -5,20 +5,21 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Form;
-use Filament\Tables\Table;
 use App\Models\Mahasiswa;
+use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
 use Illuminate\Support\Facades\Date;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\MahasiswaResource\Pages;
-use App\Filament\Resources\MahasiswaResource\RelationManagers;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
+use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\MahasiswaResource\Pages;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\MahasiswaResource\RelationManagers;
 
 class MahasiswaResource extends Resource
 {
@@ -34,6 +35,7 @@ class MahasiswaResource extends Resource
                     ->schema([
                         TextInput::make('npm')->required()->unique(ignorable:fn($record)=>$record),
                         TextInput::make('nama')->required(),
+                        FileUpload::make('pas foto')->required(),
                         Select::make('jenis kelamin')->options([
                             'Laki-Laki'=>'Laki-Laki',
                             'Perempuan'=>'Perempuan'
@@ -59,6 +61,7 @@ class MahasiswaResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('pas foto'),
                 TextColumn::make('npm')->sortable()->searchable(),
                 TextColumn::make('nama')->searchable(),
                 TextColumn::make('email'),

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('npm')->unique();
             $table->string('nama');
+            $table->string('pas foto');
             $table->enum('jenis kelamin', ['perempuan', 'laki-laki']);
             $table->string('email');
             $table->string('alamat');
